@@ -1,0 +1,137 @@
+:root{
+  --color-head-table1: rgb(17, 134, 235);
+  --color-head-table: #ffffff;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.body{
+  font-family: montserrat;
+  background-color: floralwhite;
+}
+
+div.centrerJeu h3{
+  padding: 51px 1px;
+  text-align: center;
+}
+div.centrerJeu {
+  width: 50%;
+  height: 120px;
+  margin-left: 25%;
+  box-shadow: 0 0 20px rgb(0, 0, 0, 0.15);
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  padding-top: -18px
+}
+#v1{
+  margin-top: 15px;
+}
+#v2{
+  margin-top: 10px;
+}
+#v3{
+  margin-top: 15px;
+}
+
+.content-table{
+  border-collapse: collapse;
+  margin: 25px auto;
+  font-size: 20px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgb(0, 0, 0, 0.15);
+  width: 80%;
+}
+
+.content-table thead tr{
+  background-color: var(--color-head-table1);
+  color: white;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th, .content-table td{
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.content-table tbody tr{
+  border-bottom: 1px solid #ddd;
+}
+
+.content-table tbody tr:nth-last-of-type(even){
+  background-color: #f5f5f58f;
+}
+
+.content-table tbody tr:last-of-type{
+  border-bottom: 2px solid var(--color-head-table);
+}
+
+.container{
+  width: 80%;
+  display: block;
+  margin: 25px auto;
+}
+
+button{
+  border: 1px solid var(--color-head-table);
+  background: none;
+  cursor: pointer;
+  color: var(--color-head-table);
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+button:hover{
+  color: white;
+  background: var(--color-head-table1);
+  transition: 0.5s;
+}
+
+h3:hover{
+  color:rgb(60, 152, 233);
+  transition: 0.5s;
+}
+
+@media only screen and (max-width: 767px) {
+
+  div.centrerJeu {
+    width: 80%;
+    height: 170px;
+    margin-left: 10%;
+    font-size: 12px;
+
+  }
+
+  div#v1 {
+
+    height: 120px;
+
+  }
+  
+  .margin-buton{
+    margin-top: 5px;
+  }
+  .content-table{
+    border-collapse: collapse;
+    margin: 25px auto;
+    font-size: 15px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgb(0, 0, 0, 0.15);
+    width: 80%;
+  }
+  
+  .content-table th, .content-table td{
+    padding: 5px 10px;
+    text-align: center;
+  }
+  
+  }
+
