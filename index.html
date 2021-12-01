@@ -7,41 +7,7 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div class="centrerJeu" id="v1">
-      <h3>
-        Commencer le jeu du nombre mystère   
-        <button onclick="hiddenNumber()">
-          Cliquez-ici
-        </button>
-      </h3>
-    </div>
-    <!-------------------------------------------------------------------------->
-    <div class="centrerJeu" id="v2">
-      <h3>
-        Commencer le jeu du <q>Hall Fame</q>
-        <button onclick="hallFameGame()">
-          Cliquez-ici
-        </button>
-
-        <button class="margin-buton" onclick="bestPlayer()" id="button-cliked" style="display:none">
-          Voir les 10 meilleurs joueurs
-        </button>
-      </h3>
-    </div>
-    <table style="display:none" class="content-table" id="active-table">
-      <thead>
-          <tr>
-              <th>Nom</th>
-              <th>Score</th>
-          </tr>
-      </thead>
-
-      <tbody id="listTable">
-            
-      </tbody>
-    </table>
-
-    <!-------------------------------------------------------------------------->
+    
     <div class="centrerJeu" id="v3">
       <h3>
         Commencer le jeu du <q>Hall Fame</q> amélioré
@@ -56,17 +22,32 @@
         </button>
       </h3>
     </div>
+    <div class="styleP">
+      <p id="resultPlayer">resultat</p>
+      <p id="rankingAndTimePlayer">temps mis et rang</p>
+    </div>
 
-    <table style="display:none" class="content-table" id="active-tableV2">
+    <table class="content-table">
       <thead>
         <tr>
-            <th>Nom</th>
-            <th>Score</th>
+          <th>Rang</th>
+          <th>Nom</th>          
+          <th>NbTentative</th>
+          <th>Temps</th>
         </tr>
       </thead>
 
-      <tbody id="listTableV2">
-          
+      <tbody>
+        <tr><td id="one">1</td></tr>
+        <tr><td id="two">2</td></tr>
+        <tr><td id="three">3</td></tr>
+        <tr><td id="four">4</td></tr>
+        <tr><td id="five">5</td></tr>
+        <tr><td id="six">6</td></tr>
+        <tr><td id="seven">7</td></tr>
+        <tr><td id="eight">8</td></tr>
+        <tr><td id="nine">9</td></tr>
+        <tr><td id="ten">10</td></tr>
       </tbody>
     </table>
 
