@@ -21,7 +21,7 @@ div.centrerJeu h3{
 }
 div.centrerJeu {
   width: 50%;
-  height: 120px;
+  height: 152px;
   margin-left: 25%;
   box-shadow: 0 0 20px rgb(0, 0, 0, 0.15);
   background-color: orange;
@@ -29,12 +29,7 @@ div.centrerJeu {
   font-weight: bold;
   padding-top: -18px
 }
-#v1{
-  margin-top: 15px;
-}
-#v2{
-  margin-top: 10px;
-}
+
 #v3{
   margin-top: 15px;
 }
@@ -102,15 +97,13 @@ h3:hover{
 .styleP{
   margin-top: 20px;
   margin-bottom: 20px;
-  margin-left: 38%;
+  margin-left: 25%;
   font-size: 25px;
   border: 3px solid blue;
-  width: 25%;
+  width: 50%;
   padding: 5px;
   text-align: center;
 }
-
-
 
 
 @media only screen and (max-width: 767px) {
@@ -122,15 +115,14 @@ h3:hover{
     font-size: 12px;
 
   }
-
-  div#v1 {
-
-    height: 120px;
-
-  }
   
   .margin-buton{
     margin-top: 5px;
+  }
+
+  #Go-button{
+    margin-left: 5vw;
+    margin-top: 5%;
   }
   .content-table{
     border-collapse: collapse;
@@ -146,6 +138,12 @@ h3:hover{
     padding: 5px 10px;
     text-align: center;
   }
-  
+
+  .styleP{
+    margin-left: 10%;
+    font-size: 5vw;
+    width: 80%;
   }
+  
+}
 

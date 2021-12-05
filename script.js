@@ -1,18 +1,18 @@
-//Hall of Fame version 2 avec duree----------------------------------------
+//Nombre Mystere ersion 2 avec duree----------------------------------------
 
-  //tableau stockant le nom des 10 meilleures score
-  let nameAndBestScoreV2 = [
-    {nom : "", score : ""},
-    {nom : "", score : ""},
-    {nom : "", score : ""},
-    {nom : "", score : ""},
-    {nom : "", score : ""},
-    {nom : "", score : ""},
-    {nom : "", score : ""},
-    {nom : "", score : ""},
-    {nom : "", score : ""},
-    {nom : "", score : ""} 
-  ];
+  
+function Joueur () {
+  this.nom="";
+  this.score=10000;
+  this.temps=10000;
+  }
+  
+//tableau stockant le nom des 10 meilleures score
+let bestPlayer = [];
+
+//initialisation du tableau
+for (var i=0;i<10;i++)     
+  bestPlayer[i] = new Joueur();
 
 //création du compte à rebour au début du Jeu
 
@@ -20,96 +20,79 @@
 //on crée une nouvelle date de debut, 
 //sinon il n'il n'a pas de compte à rebour dans le jeu
 let debutJeu = 0;
-const tempsEcoule = () =>{
 
+const tempsEcoule = () =>{
   debutJeu = new Date();
 }
 
-const improvedHallFameGame = () =>{
+const nombreMytere2 = () =>{
 
   let finJeu = new Date();
 
-  //tableau de meilleures scores
-  let bestScore = [1,2,3,4,5,6,7,8,9,10];
-
   //nombre mystère
-  let min = 1;
   let max = 10;
-  let numberGenerated = Math.floor(min + Math.random() * (max - min));
+  let numberGenerated = Math.ceil(Math.random() * max);
 
-  let userNumber = 0;
-  let score = 0;
+  let userNumber = -1;
+  let nombreTentative = 0;
+
+  //reinitialiser le champ de message
+  document.getElementById("resultPlayer").innerText = "Resultat";
+  document.getElementById("rankingAndTimePlayer").innerText = "";
 
   while(userNumber != numberGenerated){
-    userNumber = window.prompt("le nombre mystère est entre 1 et 10, Devinez-le ?");
-    let userNumberToInt = parseInt(userNumber);
+       userNumber = parseInt(prompt("le nombre mystère est entre 1 et 10, Devinez-le ?"));
     
-    score++;
+    nombreTentative++;
 
-    if(userNumberToInt === numberGenerated){
-      document.getElementById("resultPlayer").innerText = "vous avez réussi en "+score+" tentative(s) !";
+    if(userNumber < numberGenerated){
+      document.getElementById("resultPlayer").innerText = "C'est plus grand !";
+      document.querySelector(".styleP").style.borderColor = "red";
     }
 
-    else if(userNumberToInt < numberGenerated)
-    document.getElementById("resultPlayer").innerText = "C'est plus grand !";
-
-    else
-    document.getElementById("resultPlayer").innerText = "C'est plus petit !";
+    else if(userNumber > numberGenerated){
+     document.getElementById("resultPlayer").innerText = "C'est plus petit !";
+     document.querySelector(".styleP").style.borderColor = "red";
+    }
   }
 
-  for(let bscore of bestScore){
+  document.getElementById("resultPlayer").innerText = "vous avez réussi en "+nombreTentative+" tentative(s) !";
+  document.querySelector(".styleP").style.borderColor = "green";
 
-    if(score === bscore){
+  if(nombreTentative < bestPlayer[9].score){
 
-      //affichage du bouton #affchier les 10 meilleurs joueurs
-      document.getElementById("button-clikedV2").style.display = ""; 
+    //affichage du nombre de tentatives et ajout du nom dans le tableau des meilleurs et le temps écoulé
+    
+    //si debutJeu != 0, alors debutJeu == new Date() ; NB: le ".getTime" donne des millisecondes
+    if(debutJeu != 0){
+      var duree = Math.round((finJeu.getTime() - debutJeu.getTime())/1000);
 
-      //affichage du score et ajout du nom et du score dans le tableau des meilleurs et le temps écoulé
-      
-      //si debutJeu != 0, alors debutJeu == new Date() ; NB: le ".getTime" donne des millisecondes
-      if(debutJeu != 0){
-        let duree = Math.round((finJeu.getTime() - debutJeu.getTime())/1000);
-
-        document.getElementById("rankingAndTimePlayer").innerText = "vous êtes "+score+" ème au classement et "+"vous avez fait "+duree+" seconde(s)";
-      }
-
-      else
-      document.getElementById("rankingAndTimePlayer").innerText = "vous êtes "+score+" ème au classement";
-
-
-      //prendre le nom du joueur
-      let name = window.prompt("Entrer votre nom");
-
-      nameAndBestScoreV2[score-1].nom = name;
-      nameAndBestScoreV2[score-1].score = score;
-      //trie du tableau nameAndBestScore et le return
-      //return nameAndBestScore.sort((a, b) => a.value - b.value);
+      document.getElementById("rankingAndTimePlayer").innerText = "Vous avez fait "+duree+" seconde(s)";
     }
-  } 
-}
 
-//affectation de la réfenrence du tableau nameAndBestScore (trié) à bestPlayerArray
-let bestPlayerArrayV2 = nameAndBestScoreV2.sort((a, b) => a.value - b.value);
+    //prendre le nom du joueur
+    bestPlayer[9].nom = prompt("Bravo !!! vous faites parties des 10 meilleurs scores\nEntrez votre nom:");
+    bestPlayer[9].score = nombreTentative;
+    bestPlayer[9].temps = duree;
+    
+    bestPlayer.sort((a, b) => a.score - b.score);
+  } 
 
  //affichage du tableau des 10 meilleurs scores
-const bestPlayerV2 = () =>{
+  console.log(bestPlayer);
 
-  //concaténation de tous les noms et score du tableau dans une string
-  let allresults = "";
+  for(let i=0; i<bestPlayer.length; i++){
 
-  for(let player of bestPlayerArrayV2){
+    if(bestPlayer[i].nom !=""){
+      document.getElementById(i).innerHTML = `
+      <td>${i+1}</td>
+      <td>${bestPlayer[i].nom}</td> 
+      <td>${bestPlayer[i].score}</td>
+      <td>${bestPlayer[i].temps}</td>
+      `;
+    }
 
-    allresults += `
-      <tr>
-        <td>${player.nom}</td>
-        <td>${player.score}</td>
-      </tr>
-    `;
+
   }
-  document.querySelector("#listTableV2").innerHTML =allresults;
-
-  document.getElementById("button-clikedV2").addEventListener("click", function() {
-    document.getElementById("active-tableV2").style.display = ""; 
-  });
 }
 //fin du Jeu-----------------------------------------------------
