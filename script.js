@@ -75,7 +75,13 @@ const nombreMytere2 = () =>{
     bestPlayer[9].score = nombreTentative;
     bestPlayer[9].temps = duree;
     
-    bestPlayer.sort((a, b) => a.score - b.score);
+    bestPlayer.sort(function(a, b){
+      if(a.score == b.score)
+        return a.temps - b.temps;
+
+      return a.score - b.score;
+    });
+
   } 
 
  //affichage du tableau des 10 meilleurs scores
