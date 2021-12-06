@@ -27,8 +27,6 @@ const tempsEcoule = () =>{
 
 const nombreMytere2 = () =>{
 
-  let finJeu = new Date();
-
   //nombre mystère
   let max = 10;
   let numberGenerated = Math.ceil(Math.random() * max);
@@ -64,6 +62,7 @@ const nombreMytere2 = () =>{
     //affichage du nombre de tentatives et ajout du nom dans le tableau des meilleurs et le temps écoulé
     
     //si debutJeu != 0, alors debutJeu == new Date() ; NB: le ".getTime" donne des millisecondes
+    let finJeu = new Date();
     if(debutJeu != 0){
       var duree = Math.round((finJeu.getTime() - debutJeu.getTime())/1000);
 
