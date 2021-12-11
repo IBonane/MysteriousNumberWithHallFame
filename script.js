@@ -1,106 +1,142 @@
 //Nombre Mystere ersion 2 avec duree----------------------------------------
 
-  
-function Joueur () {
-  this.nom="";
+
+//function 4
+function player () {
+
+  this.name="";
   this.score=10000;
-  this.temps=10000;
+  this.time=10000;
   }
   
 //tableau stockant le nom des 10 meilleures score
 let bestPlayer = [];
 
 //initialisation du tableau
-for (var i=0;i<10;i++)     
-  bestPlayer[i] = new Joueur();
+for (let i=0;i<10;i++)     
+  bestPlayer[i] = new player();
+
+//desactivation de l'input
+// let valueText = document.querySelector("#numberInput");
+// valueText.disabled = false;
+
+//variable utilisé
+let nbTries = 0;
+let numberUser = -1;
+let numberGenerate;
+let duration;
+let divInputDebut = document.querySelector("#commenceJeu");
+let inputListeningNumber = document.getElementById("numberInput");
+let inputListeningName;
+let resultatText   = document.getElementById("resultPlayer");//reinitialiser le champ de message
+let nbTentativeText = document.getElementById("rankingAndTimePlayer");
+let changeDivColor = document.querySelector("#changeColor");
+let duree;
+let divGagne = document.getElementById("divNomGagnant");
 
 //création du compte à rebour au début du Jeu
-//on crée une nouvelle date de debut, 
+let debutJeu; 
 
-let debutJeu = new Date();
+//écoute de l'input number
 
-const nombreMytere3 = () =>{
 
-  let valueText = document.getElementById("textInput");
-  valueText.disabled = false;
+divGagne.style.display = "none";
+divInputDebut.style.display = "none";
 
-  //nombre mystère
-  let max = 10;
-  let numberGenerated = Math.ceil(Math.random() * max);
 
-  let userNumber;
-  let nombreTentative = 0;
+//function 3
+const nombreMytere3 = () => {
+  nbTries++;
+  console.log("numbergenerate:"+numberGenerate);
 
-  //reinitialiser le champ de message
-  document.getElementById("resultPlayer").innerText = "Resultat";
-  document.getElementById("rankingAndTimePlayer").innerText = "";
+  numberUser = parseInt(inputListeningNumber.value);
+  inputListeningNumber.value = "";
 
- /* while(userNumber != numberGenerated){
-       userNumber = parseInt(prompt("le nombre mystère est entre 1 et 10, Devinez-le ?"));
-    */
+  if(numberUser == numberGenerate){
 
-  valueText.addEventListener('change', (event) =>{
-    userNumber = parseInt(event.target.value);   
-    valueText.value = "";
-    nombreTentative++; 
+    let finJeu = new Date();
+    duree = Math.round((finJeu.getTime() - debutJeu.getTime())/1000);
 
-    if(userNumber < numberGenerated){
-      document.getElementById("resultPlayer").innerText = "C'est plus grand !";
-      document.querySelector("#changeColor").style.borderColor = "red";
-    }
+    divGagne.style.display = "";
+    divInputDebut.style.display = "none";
 
-    else if(userNumber > numberGenerated){
-     document.getElementById("resultPlayer").innerText = "C'est plus petit !";
-     document.querySelector("#changeColor").style.borderColor = "red";
-    }
-  /*}*/
+    console.log(nbTries+" --- "+numberUser+"---Gagné");
+    resultatText.innerText = "Bravo !!! vous l'avez trouvé";
+    nbTentativeText.innerText = "vous avez réussi en "+nbTries+" tentative(s) !\nEn "+duree+" seconde(s)";
+    changeDivColor.style.borderColor = "green";
+
+    getNamePlayerAndDisplayInTable();
+
+    resultatText.innerText = "Rejouer !";
+    nbTentativeText.innerText = "";
+
+  }
+
+  else if(numberUser < numberGenerate){
+    console.log(nbTries+" --- "+numberUser+"---nombre mystère plus grand");
+    resultatText.innerText = "nombre mystère plus grand";
+    changeDivColor.style.borderColor = "red";
+  }
+
+  else{
+    console.log(nbTries+" --- "+numberUser+"---nombre mystère plus petit");
+    resultatText.innerText = "nombre mystère plus petit";
+    changeDivColor.style.borderColor = "red";
+  } 
+}
+
+
+//function 2
+const jouer = () => {
+  nbTries = 0;
+  duree = 0;
+  changeDivColor.style.borderColor = "blue";
+
+  resultatText.innerText = "Resultat";
+  nbTentativeText.innerText = "";
+
+  divGagne.style.display = "none";
+  divInputDebut.style.display = "";
   
-  if(userNumber == numberGenerated){
+  randomNumber();
 
-    //desactivation du input via son id
-    valueText.disabled = true;
+  //on crée une nouvelle date de debut
+  debutJeu = new Date();
+
+  inputListeningNumber.onchange = nombreMytere3;
+}
+
+//function 1
+const randomNumber = () =>{
+  let max = 10;
+  numberGenerate = Math.ceil(Math.random() * max);
+}
 
 
-    document.getElementById("resultPlayer").innerText = "vous avez réussi en "+nombreTentative+" tentative(s) !";
-    document.querySelector("#changeColor").style.borderColor = "green";
+//function 5
+const getNamePlayerAndDisplayInTable = () =>{
 
-    if(nombreTentative < bestPlayer[9].score){
+  //prendre le nom du joueur
+  let nameInput = document.getElementById("gagnantInput");
+  nameInput.onchange = function (){ 
 
-      document.getElementById("divNomGagnant").style.display= "";
-      //affichage du nombre de tentatives et ajout du nom dans le tableau des meilleurs et le temps écoulé
-      
-      //si debutJeu != 0, alors debutJeu == new Date() ; NB: le ".getTime" donne des millisecondes
-      let finJeu = new Date();
+    bestPlayer[9].nom = this.value;
+    bestPlayer[9].score = nbTries;
+    bestPlayer[9].temps = duree;
+
+    this.value = "";
+    divGagne.style.display = "none";
     
-      var duree = Math.round((finJeu.getTime() - debutJeu.getTime())/1000);
-      document.getElementById("rankingAndTimePlayer").innerText = "Vous avez fait "+duree+" seconde(s)";
-      
-      //prendre le nom du joueur
-      let nameInput = document.getElementById("gagnantInput");
-      nameInput.addEventListener('change', (event) =>{ 
-        //console.log(event.target.value);
-      bestPlayer[9].nom = event.target.value;
-      event.target.value = "";
-      document.getElementById("gagnantInput")
-      bestPlayer[9].score = nombreTentative;
-      bestPlayer[9].temps = duree;
+    bestPlayer.sort(function(a, b){
+      if(a.score == b.score)
+        return a.temps - b.temps;
 
+      return a.score - b.score;
+    });
 
-      document.getElementById("divNomGagnant").style.display= "none";
-      
-      bestPlayer.sort(function(a, b){
-        if(a.score == b.score)
-          return a.temps - b.temps;
-
-        return a.score - b.score;
-      });
-
-        //affichage du tableau des 10 meilleurs scores
-    //console.log(bestPlayer);
-
+    //affichage du tableau des 10 meilleurs scores
     for(let i=0; i<bestPlayer.length; i++){
-
-      if(bestPlayer[i].nom !=""){
+      if(bestPlayer[i].nom !=undefined){
         document.getElementById(i).innerHTML = `
         <td>${i+1}</td>
         <td>${bestPlayer[i].nom}</td> 
@@ -110,10 +146,6 @@ const nombreMytere3 = () =>{
       }
 
     }
-      });
-
-    }  
-  
-  }}); 
+  }
 }
 //fin du Jeu-----------------------------------------------------

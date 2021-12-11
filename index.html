@@ -11,20 +11,20 @@
     <div class="centrerJeu" id="v3">
       <h3>
         Commencer le jeu du <q>Nombre Mytere 2</q> amélioré
-        <button onclick="nombreMytere3()">
+        <button onclick="jouer()">
           Jouer
         </button>
       </h3>
     </div>
 
-    <div class="saisiText styleP">
+    <div id="commenceJeu" class="saisiText styleP">
       <label>le nombre mystère est entre 1 et 10, Devinez-le ?</label>
       <br/> <br/>
-      <input disabled="true" placeholder=" Entrer un nombre entier entre 1 et 10" id="textInput"/>
+      <input type="number" value="" placeholder="Entrer un nombre entier entre 1 et 10" id="numberInput"/>
     </div>
 
 
-    <div style="display: none;" id="divNomGagnant" class="styleP">
+    <div id="divNomGagnant" class="styleP">
       <label>Bravo !!! vous faites parties des 10 meilleurs scores ! <br/> <br/>Entrez votre nom:</label>
       <br/> <br/>
       <input id="gagnantInput" placeholder=" Entrer votre nom ici..."/>
