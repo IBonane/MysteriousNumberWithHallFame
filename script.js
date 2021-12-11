@@ -47,7 +47,7 @@ divInputDebut.style.display = "none";
 //function 3
 const nombreMytere3 = () => {
   nbTries++;
-  console.log("numbergenerate:"+numberGenerate);
+  //console.log("numbergenerate:"+numberGenerate);
 
   numberUser = parseInt(inputListeningNumber.value);
   inputListeningNumber.value = "";
@@ -60,26 +60,25 @@ const nombreMytere3 = () => {
     divGagne.style.display = "";
     divInputDebut.style.display = "none";
 
-    console.log(nbTries+" --- "+numberUser+"---Gagné");
+    //console.log(nbTries+" --- "+numberUser+"---Gagné");
     resultatText.innerText = "Bravo !!! vous l'avez trouvé";
-    nbTentativeText.innerText = "vous avez réussi en "+nbTries+" tentative(s) !\nEn "+duree+" seconde(s)";
+    nbTentativeText.innerText = "vous avez réussi en "+nbTries+" tentative(s) en "+duree+" seconde(s)";
     changeDivColor.style.borderColor = "green";
 
     getNamePlayerAndDisplayInTable();
-
-    resultatText.innerText = "Rejouer !";
-    nbTentativeText.innerText = "";
+    
+    document.getElementById("replay").innerText = "Rejouer"
 
   }
 
   else if(numberUser < numberGenerate){
-    console.log(nbTries+" --- "+numberUser+"---nombre mystère plus grand");
+    //console.log(nbTries+" --- "+numberUser+"---nombre mystère plus grand");
     resultatText.innerText = "nombre mystère plus grand";
     changeDivColor.style.borderColor = "red";
   }
 
   else{
-    console.log(nbTries+" --- "+numberUser+"---nombre mystère plus petit");
+    //console.log(nbTries+" --- "+numberUser+"---nombre mystère plus petit");
     resultatText.innerText = "nombre mystère plus petit";
     changeDivColor.style.borderColor = "red";
   } 
@@ -115,7 +114,6 @@ const randomNumber = () =>{
 
 //function 5
 const getNamePlayerAndDisplayInTable = () =>{
-
   //prendre le nom du joueur
   let nameInput = document.getElementById("gagnantInput");
   nameInput.onchange = function (){ 

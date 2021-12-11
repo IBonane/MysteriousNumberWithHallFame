@@ -11,7 +11,7 @@
     <div class="centrerJeu" id="v3">
       <h3>
         Commencer le jeu du <q>Nombre Mytere 2</q> amélioré
-        <button onclick="jouer()">
+        <button id="replay" onclick="jouer()">
           Jouer
         </button>
       </h3>
@@ -22,17 +22,16 @@
       <br/> <br/>
       <input type="number" value="" placeholder="Entrer un nombre entier entre 1 et 10" id="numberInput"/>
     </div>
-
-
-    <div id="divNomGagnant" class="styleP">
-      <label>Bravo !!! vous faites parties des 10 meilleurs scores ! <br/> <br/>Entrez votre nom:</label>
-      <br/> <br/>
-      <input id="gagnantInput" placeholder=" Entrer votre nom ici..."/>
-    </div>
-
+    
     <div id="changeColor" class="styleP">
       <p id="resultPlayer">Resultat</p>
       <p id="rankingAndTimePlayer"></p>
+    </div>
+
+    <div id="divNomGagnant" class="styleP">
+      <label>Bien jouer !!! vous faites parties des 10 meilleurs scores ! <br/> <br/>Entrez votre nom:</label>
+      <br/> <br/>
+      <input id="gagnantInput" placeholder=" Entrer votre nom ici..."/>
     </div>
 
     <table class="content-table">
