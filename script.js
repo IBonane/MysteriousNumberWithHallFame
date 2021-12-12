@@ -16,11 +16,8 @@ let bestPlayer = [];
 for (let i=0;i<10;i++)     
   bestPlayer[i] = new player();
 
-//desactivation de l'input
-// let valueText = document.querySelector("#numberInput");
-// valueText.disabled = false;
-
 //variable utilisé
+let debutJeu; 
 let nbTries = 0;
 let numberUser = -1;
 let numberGenerate;
@@ -35,10 +32,13 @@ let duree;
 let divGagne = document.getElementById("divNomGagnant");
 
 //création du compte à rebour au début du Jeu
-let debutJeu; 
+let timePlaying;
+let timer;
 
-//écoute de l'input number
-
+function countTimePlaying(){
+  timer++;
+  document.getElementById("timerPlayer").innerHTML = timer + " s";
+}
 
 divGagne.style.display = "none";
 divInputDebut.style.display = "none";
@@ -53,6 +53,9 @@ const nombreMytere3 = () => {
   inputListeningNumber.value = "";
 
   if(numberUser == numberGenerate){
+
+    //arret du compte à rebour
+    clearInterval(timePlaying);
 
     let finJeu = new Date();
     duree = Math.round((finJeu.getTime() - debutJeu.getTime())/1000);
@@ -87,6 +90,11 @@ const nombreMytere3 = () => {
 
 //function 2
 const jouer = () => {
+  clearInterval(timePlaying);
+  //compte a rebour
+  timePlaying = setInterval(function(){countTimePlaying()}, 1000);
+  timer = 0;
+
   nbTries = 0;
   duree = 0;
   changeDivColor.style.borderColor = "blue";
